@@ -88,13 +88,13 @@ def main(args):
     '''
 
 def get_option(s, options):
-    if s == options[0]
+    if s == options[0]:
         return 'A'
-    elif s == options[1]
+    elif s == options[1]:
         return 'B'
-    elif s == options[2]
+    elif s == options[2]:
         return 'C'
-    elif s == options[3]
+    elif s == options[3]:
         return 'D'
 
 if __name__ == "__main__":
