@@ -39,7 +39,7 @@ def main(args):
         print("Unknown model name")
         return -1
 
-    subject_name=args.subject
+    subject_name=args.task
     if not os.path.exists(r"logs"):
         os.mkdir(r"logs")
     run_date=time.strftime('%Y-%m-%d_%H-%M-%S',time.localtime(time.time()))
@@ -102,12 +102,11 @@ def get_option(s, options):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--ntrain", "-k", type=int, default=5)
-    parser.add_argument("--minimax_group_id", type=str,default="xxx")
-    parser.add_argument("--minimax_key", type=str,default="xxx")
+    parser.add_argument("--minimax_group_id", type=str,default="xxx") # for minimax
+    parser.add_argument("--minimax_key", type=str,default="xxx") # for minimax
     parser.add_argument("--few_shot", action="store_true")
     parser.add_argument("--model_name",type=str)
-    parser.add_argument("--cot",action="store_true")
-    parser.add_argument("--subject","-s",type=str,default="operating_system")
-    parser.add_argument("--cuda_device", type=str)
+    parser.add_argument("--task","-t",type=str,default="xiezhi_inter_chn")
+    parser.add_argument("--cuda_device", type=str) # for chatglm
     args = parser.parse_args()
     main(args)

@@ -152,7 +152,7 @@ class ChatGLM_Evaluator(Evaluator):
         inputs = tokenizer([prompt], return_tensors="pt")
         inputs = inputs.to(model.device)
         outputs = model.generate(**inputs, return_dict_in_generate=True, output_scores=True, **gen_kwargs)
-        model.tes
+
         score = outputs.scores[0][0].tolist()
         choice_score = [score[167], score[333], score[251], score[416]]
         ranked_index = [index for index, value in sorted(list(enumerate(choice_score)), key=lambda x:x[1], reverse=True)]
