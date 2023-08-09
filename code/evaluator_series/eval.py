@@ -60,7 +60,9 @@ def main(args):
         options = jsonline['options'].split('\n')
         for o in options:
             o = str(o).strip().strip(' "\'').strip('"').rstrip('"')
-        print(len(options))
+        if(len(options) < 4):
+            print("Error: options length is not 4 at line ", idx)
+            continue
         var_df.loc[idx] = [
             idx,  # id自动递增编号
             jsonline['question'],
