@@ -54,6 +54,7 @@ class Moss_Evaluator(Evaluator):
                 {"role":"user","content":example},
             ]
 
+    # using format_example() to generate 
     def generate_few_shot_prompt(self,subject,dev_df,cot=False):
         prompt=f"你是一个中文人工智能助手，以下是中国关于{subject}考试的单项选择题，请选出其中的正确答案。\n"
         k=self.k
@@ -120,7 +121,8 @@ class Moss_Evaluator(Evaluator):
                             ans_list=re.findall(r"答案为(.+?)。",response_str)
                         if len(ans_list)==0:
                             ans_list=re.findall(r"选项(.+?)是正确的。",response_str)
-
+                        if len(ans_list)==0:
+                            ans_list=re.findall(r"选择选项(.+?)",response_str)
                         if len(ans_list)==0:
                             correct=0
                         else:

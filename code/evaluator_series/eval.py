@@ -74,20 +74,12 @@ def main(args):
             ' '  # 将标签以逗号分隔，并存储在explanation列中
         ]
         idx += 1
+        
+    sample_num = args.sample_num
+    var_df = var_df.sample(n=min(sample_num, idx))
     correct_ratio = evaluator.eval_subject(subject_name, var_df, few_shot=args.few_shot,save_result_dir=save_result_dir)
     print("Acc:",correct_ratio)
 
-    '''
-    val_file_path=os.path.join('data/val',f'{subject_name}_val.csv')
-    val_df=pd.read_csv(val_file_path)
-    if args.few_shot:
-        dev_file_path=os.path.join('data/dev',f'{subject_name}_dev.csv')
-        dev_df=pd.read_csv(dev_file_path)
-        correct_ratio = evaluator.eval_subject(subject_name, val_df, dev_df, few_shot=args.few_shot,save_result_dir=save_result_dir,cot=args.cot)
-    else:
-        correct_ratio = evaluator.eval_subject(subject_name, val_df, few_shot=args.few_shot,save_result_dir=save_result_dir)
-    print("Acc:",correct_ratio)
-    '''
 
 def get_option(s, options):
     if s == options[0]:
@@ -108,5 +100,6 @@ if __name__ == "__main__":
     parser.add_argument("--model_name",type=str)
     parser.add_argument("--task","-t",type=str,default="xiezhi_inter_chn")
     parser.add_argument("--cuda_device", type=str) # for chatglm
+    parser.add_argument("--sample_num", "-s", type=int, default=10)
     args = parser.parse_args()
     main(args)

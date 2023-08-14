@@ -122,7 +122,8 @@ class MiniMax_Evaluator(Evaluator):
             r'答案是([ABCD])',
             r'答案([ABCD])',
             r'选择([ABCD])',
-            r'答案：([ABCD])'
+            r'答案：([ABCD])',
+            r'选择([ABCD])'
         ]
         # RE extraction
         for answer_pattern in answer_patterns:
